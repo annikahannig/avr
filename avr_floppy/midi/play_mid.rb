@@ -28,7 +28,8 @@ end
 #
 # Open serial port
 #
-fdrive = SerialPort.new '/dev/ttyUSB0', 9600
+# fdrive = SerialPort.new '/dev/ttyUSB0', 9600
+fdrive = SerialPort.new '/dev/tty.usbserial-ftE232ZY', 9600
 
 
 

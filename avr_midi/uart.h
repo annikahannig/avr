@@ -5,7 +5,8 @@
 
 #include <inttypes.h>
 
-#define BAUD 9600UL 
+// #define BAUD 9600UL 
+#define BAUD 31250UL
 
 // calculate baud
 #define UBRR_VAL ((F_CPU+BAUD*8)/(BAUD*16)-1)   
@@ -19,7 +20,7 @@
 
 #define UART_BUFFER_SIZE 80
 
-#define UART_ECHO 1
+#define UART_ECHO 0
 
 // Functions 
 void USART_init();

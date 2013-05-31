@@ -21,8 +21,10 @@ ISR( USART_RXC_vect )
     unsigned char c = UDR;
 
     if( uart_string_ready == 0 ) {
-        if( c != '\n' &&
-            c != '\r' && 
+		if( c == '\r' ) {
+			// discard char
+		}
+        else if( c != '\n' &&
             count < UART_BUFFER_SIZE - 1 ) {
             // append char to string
             uart_string_buffer[count] = c;
@@ -41,7 +43,6 @@ ISR( USART_RXC_vect )
 #if UART_ECHO == 1
     UDR = c;
 #endif
-
 
 }
 
@@ -97,8 +98,6 @@ void USART_init()
 
 char* USART_has_data() 
 {
- 
-
 	if( uart_string_ready == 1 ) {
 		uart_string_ready = 0;
 		return (char*)uart_string_buffer; 

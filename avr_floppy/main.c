@@ -137,10 +137,9 @@ int main()
   // setup timer
   TCCR1A = 0;
   TCCR1B = (1<<WGM12)|(1<<CS12)|(1<<CS10); // Clear on match, Prescale: 1024
-  TCCR1B = (1<<CS12)|(1<<CS10); // Clear on 0xffff, Prescale: 1024
-  // TCCR1B = (1<<CS12); // Clear on 0xffff, Prescale: 256
 
   sei();
+
 
 	for(;;) {
 
@@ -168,7 +167,7 @@ int main()
 			strncpy( buffer, data, 3 );
 			cmd = atoi( buffer );
 
-			strncpy( buffer, data+3, 80 );
+			strncpy( buffer, data+4, 80 );
 			value = atoi( buffer );
 
 			switch( cmd ) {
@@ -191,8 +190,11 @@ int main()
 			}
 
 		}
+
 		sei();
 	}	
+
+  
 }
 
 

@@ -19,7 +19,7 @@
 
 #define UART_BUFFER_SIZE 80
 
-#define UART_ECHO 1
+#define UART_ECHO 0
 
 // Functions 
 void USART_init();
