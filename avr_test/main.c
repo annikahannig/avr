@@ -8,7 +8,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-// #include "uart.h"
+#include "uart.h"
 
 uint16_t cap_sense;
 
@@ -20,22 +20,20 @@ uint16_t cap_sense;
 volatile uint16_t cnt;
 
 
-
 int main()
 {
-	// wait
-/*
 	USART_init();
-*/
 
   STATUS_DDR |= STATUS_LED; 
 
   // print welcome 
- // USART_writeln( "100 AVR Testing 0.1.1 (c) 2013 Matthias Hannig" );
+  USART_writeln( "100 AVR Testing 0.1.1 (c) 2013 Matthias Hannig" );
 
 	for(;;) {
     STATUS_PORT ^= STATUS_LED;
     _delay_ms(500);
+
+    USART_writeln( "Hi there!");
 	}	
 }
 

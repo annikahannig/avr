@@ -81,24 +81,13 @@ void USART_init()
     /* Set baud rate */
     UBRRH = (unsigned char)(UBRR_VAL>>8);
     UBRRL = (unsigned char)(UBRR_VAL & 0xff);
-  
-    // configure
-    UCSRB |= (1<<TXEN); 
-    UCSRC |= (1<<URSEL)|(3<<UCSZ0); 
-
-    UBRRH = 0; 
-    UBRRL = 31; 
-
-  /*
 
     UCSRC=(1<<URSEL)|(0<<UMSEL)|(0<<UPM1)|(0<<UPM0)|
         (0<<USBS)|(0<<UCSZ2)|(1<<UCSZ1)|(1<<UCSZ0);
 
-   */ 
-  
     /* Enable receiver and transmitter */
     // UCSRC = (1<<URSEL)|(1<<UCSZ1)|(1<<UCSZ0);
-    // UCSRB |= (1<<RXEN)|(1<<TXEN)|(1<<RXCIE);
+    UCSRB |= (1<<RXEN)|(1<<TXEN)|(1<<RXCIE);
 
     /* Set frame format: 8data, 2stop bit
      * and use interrupts for receiving data

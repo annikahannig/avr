@@ -44,8 +44,6 @@ int main()
 
   sei();
 
-  // print welcome 
-  USART_writeln( "100 Capsense Testing 0.1.1 (c) 2013 Matthias Hannig" );
 
 
 	for(;;) {
@@ -55,16 +53,16 @@ int main()
     velocity = 40 + (rand() % 90 );      
       
     // Note ON:
-    USART_transmit( 0x80 );
+    USART_transmit( 0x90 );
     USART_transmit( note );
     USART_transmit( velocity );    
 
     _delay_ms( 200 );
-    USART_transmit( 0x90 );
+    USART_transmit( 0x80 );
     USART_transmit( note );
-    USART_transmit( velocity );
+    USART_transmit( 0x00 );
     
-    _delay_ms( 80 );
+    _delay_ms( 50 );
 
     
 	}	

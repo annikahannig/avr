@@ -3,7 +3,7 @@ CC=avr-gcc
 
 CCFLAGS=-mmcu=atmega8 -I. -gdwarf-2 -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums -Wall  -Wundef  -Wundef -MD -MP
 
-PROGRAM=avr_test
+PROGRAM=avr_lpwm
 
 PART=m8
 

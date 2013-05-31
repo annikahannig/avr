@@ -14,6 +14,8 @@ else
 endif
 
 all:
+#	$(CC) $(CCFLAGS) simple_midi.c -o $(PROGRAM).elf
+  
 	$(CC) $(CCFLAGS) -c -o uart.o uart.c
 	$(CC) $(CCFLAGS) main.c uart.o -o $(PROGRAM).elf 
 	avr-objcopy  -O ihex -R .eeprom $(PROGRAM).elf $(PROGRAM).hex
