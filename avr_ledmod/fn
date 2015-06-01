@@ -1,0 +1,10 @@
+
+impulse
+ return k*x*e^(1-k*x)
+
+
+impulse_to
+ return k*x*(1-c)*e^(1-k*x) + c
+
+
+
