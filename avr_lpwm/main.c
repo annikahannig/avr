@@ -8,6 +8,8 @@
 #include <string.h>
 #include <stdlib.h>
 
+#include <math.h>
+
 #include "uart.h"
 
 uint16_t cap_sense;
@@ -58,7 +60,7 @@ int main()
 	USART_init();
 
   // Lamp 0 output.
-  LAMPS_DDR |= LAMP_0|LAMP_1|LAMP_2|LAMP_3;
+  LAMPS_DDR |= LAMP_0|LAMP_1|LAMP_2|LAMP_3|LAMP_4|LAMP_5;
 
 
   // Setup soft pwm timer  
@@ -66,6 +68,8 @@ int main()
   TIMSK |= (1<<TOIE0); // allow overflow interrupt
 
   sei();
+
+  uint8_t t = 0;
 
 
   int i = 0;
@@ -77,6 +81,7 @@ int main()
   uint8_t dir = 1;
 
 	for(;;) {
+    t++;
     STATUS_PORT ^= STATUS_LED;
 
     if( dir ) {
@@ -86,9 +91,14 @@ int main()
       value--;
     }
 
-      cmp_lamps[0] = value;
-      cmp_lamps[1] = 255 - value;
-      cmp_lamps[2] = value + 125;
+    cmp_lamps[0] = (uint8_t) (((sin(((float)t/255.0f)*6.28f))+1.0f) * 127.0f);
+    cmp_lamps[1] = (uint8_t) (((sin(((float)(t+25)/255.0f)*6.28f))+1.0f) * 127.0f);
+    cmp_lamps[2] = (uint8_t) (((sin(((float)(t+80)/255.0f)*6.28f))+1.0f) * 127.0f);
+    cmp_lamps[3] = (uint8_t) (((sin(((float)(t+180)/255.0f)*6.28f))+1.0f) * 127.0f);
+    cmp_lamps[4] = (uint8_t) (((sin(((float)(t+220)/255.0f)*6.28f))+1.0f) * 127.0f);
+    cmp_lamps[5] = (uint8_t) (((sin(((float)(t+60)/255.0f)*6.28f))+1.0f) * 127.0f);
+
+
     if( value == 0 ) dir = 1;
     if( value > 200 ) dir = 0;
 
